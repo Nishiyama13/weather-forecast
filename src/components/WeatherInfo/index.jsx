@@ -32,7 +32,6 @@ export default function WeatherInfo({ city, setCity }) {
 
     async function getWeatherData (city) {
         const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${weatherkey}&lang=pt_br`
-        console.log(apiWeatherURL);
 
         try {
             const res = await fetch(apiWeatherURL)

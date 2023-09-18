@@ -26,3 +26,5 @@ npm run dev
 ```bash
 https://weather-forecast-three-mu.vercel.app/
 ```
+
+![Weather Forecas image](src/assets/weather-forecast.png)

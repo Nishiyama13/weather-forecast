@@ -20,7 +20,6 @@ export default function ForecastInfo({ city }) {
             const apiForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${weatherkey}&lang=pt_br`
             const res = await fetch(apiForecastURL)
             const data = await res.json();
-            console.log(data);
 
             const formatData = data.list.map(item => ({
                 name: formatDay(item.dt_txt),
