@@ -11,6 +11,7 @@ export default function WeatherInfo() {
     const [temp, setTemp] = useState('');
     const [weather, setWeather] = useState('');
     const initianCity = "Mauá"
+    const [backgroudColor, setBackgroudColor] = useState('#8E8E8E');
 
     useEffect(() => {
         showWeatherData(initianCity);
@@ -44,9 +45,46 @@ export default function WeatherInfo() {
             setTemp_min(data.main.temp_min);
             setTemp_max(data.main.temp_max);
             setTemp(data.main.temp);
-            setWeather(data.weather[0].description);
+            updateWetherInfo(data.weather[0].main)
         } catch (error) {
             console.log(error.message);
+        }
+    }
+
+    function updateWetherInfo(weather) {
+        switch(weather) {
+            case 'Clear':
+                setWeather('Céu Aberto');
+                setBackgroudColor('#e9e642');
+                break;
+            case 'Clouds':
+                setWeather('Nublado');
+                setBackgroudColor('grey');
+                break;
+            case 'Rain':
+                setWeather('Chovendo');
+                setBackgroudColor('blue');
+                break;
+            case 'Snow':
+                setWeather('Nevando')
+                setBackgroudColor('#c4c3bd');
+                break;
+            case 'Thunderstorm':
+                setWeather('Tempestade');
+                setBackgroudColor('#ca00d1');
+                break;
+            case 'Drizzle':
+                setWeather('Chuviscando');
+                setBackgroudColor('lightblue');
+                break;
+            case 'Mist':
+                setWeather('Neblina');
+                setBackgroudColor('lightgrey');
+                break;
+            default:
+                setWeather('');
+                setBackgroudColor('red');
+                break;
         }
     }
 
@@ -56,7 +94,7 @@ export default function WeatherInfo() {
                 <input type="text" placeholder='Digite uma cidade' id='city-input' value={searchValue} onChange={e => setSearchValue(e.target.value)} onKeyDown={handleKeyDown}/>
                 <button type='button' id='search' onClick={searchCity}>Buscar</button>   
             </InputContainer>
-            <WheatherContainer>
+            <WheatherContainer backgroudColor={backgroudColor}>
                 <div>
                     <h3>Agora: <span id='name'>{city ? city: initianCity}</span></h3>
                     <p>Mínima: <span value={temp_min} id='temp_min'>{temp_min}</span>&deg;C</p>
@@ -74,7 +112,7 @@ export default function WeatherInfo() {
 const WheatherContainer = styled.div`
     width: 50%;
     border-radius: 10px;
-    background-color: #8E8E8E;
+    background-color: ${props => props.backgroudColor};
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
@@ -99,7 +137,7 @@ const WheatherContainer = styled.div`
 const CurrentTemperature = styled.div`
     p {
         margin-bottom: -10px;
-        margin-right: -50px;
+        margin-right: -10px;
     }
 `
 const InputContainer = styled.div`
