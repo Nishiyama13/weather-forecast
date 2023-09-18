@@ -1,32 +1,121 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 export default function WeatherInfo() {
+    
+    const weatherkey = import.meta.env.VITE_API_WEATHER_KEY;
+    console.log(weatherkey);
+    const [city, setCity] = useState('');
+    const [searchValue, setSearchValue] = useState('');
+    const [temp_min, setTemp_min] = useState('');
+    const [temp_max, setTemp_max] = useState('');
+    const [temp, setTemp] = useState('');
+    const [weather, setWeather] = useState('');
+    const initianCity = "Mauá"
+
+    useEffect(() => {
+        showWeatherData(initianCity);
+    },[]);
+
+    async function searchCity(event) {
+        event.preventDefault();
+        showWeatherData (searchValue)
+    }
+
+    async function showWeatherData (city) {
+        console.log(city);
+        getWeatherData(city);
+    }
+
+    function handleKeyDown(event) {
+        if (event.key === 'Enter') {
+            showWeatherData (searchValue)
+        }
+    }
+
+    async function getWeatherData (city) {
+        const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${weatherkey}&lang=pt_br`
+        console.log(apiWeatherURL);
+
+        try {
+            const res = await fetch(apiWeatherURL)
+            const data = await res.json();
+            console.log(data);
+            setCity(data.name);
+            setTemp_min(data.main.temp_min);
+            setTemp_max(data.main.temp_max);
+            setTemp(data.main.temp);
+            setWeather(data.weather[0].description);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     return(
-        <WheatherContainer>
-            <h1>WeatherInfo</h1>
-            <div>
-                <h2>Agora: <span>Cidade</span></h2>
-                <h3>Mínima: <span>15.9°C</span></h3>
-                <h3>Máxima: <span>25.7°C</span></h3>
-            </div>
-            <div>
-                <h3><span>Nublado</span></h3>
-                <h1><span>18.2°C</span></h1>
-            </div>
-        </WheatherContainer>
+        <>
+            <InputContainer>
+                <input type="text" placeholder='Digite uma cidade' id='city-input' value={searchValue} onChange={e => setSearchValue(e.target.value)} onKeyDown={handleKeyDown}/>
+                <button type='button' id='search' onClick={searchCity}>Buscar</button>   
+            </InputContainer>
+            <WheatherContainer>
+                <div>
+                    <h3>Agora: <span id='name'>{city ? city: initianCity}</span></h3>
+                    <p>Mínima: <span value={temp_min} id='temp_min'>{temp_min}</span>&deg;C</p>
+                    <p>Máxima: <span value={temp_max} id='temp_max'>{temp_max}</span>&deg;C</p>
+                </div>
+                <CurrentTemperature>
+                    <p><span>{weather}</span></p>
+                    <h2><span value={temp} id='temp'>{temp}</span>&deg;C</h2>
+                </CurrentTemperature>
+            </WheatherContainer>
+        </>
     );
 }
 
 const WheatherContainer = styled.div`
-    width: 100%;
-    height: 40%;
+    width: 50%;
     border-radius: 10px;
-    color: #8E8E8E;
-    h1 {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
+    background-color: #8E8E8E;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
     color: white;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    font-size: 14px;
+    align-items: center;
+
+    h2 {
+        font-size: 30px;
+        font-weight: 400;
+        color: white;
+        margin: auto;
+    }
+    
+    p{
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
 `;
+const CurrentTemperature = styled.div`
+    p {
+        margin-bottom: -10px;
+        margin-right: -50px;
+    }
+`
+const InputContainer = styled.div`
+margin-bottom: 15px;
+
+
+    input {
+        background-color: white;
+        height: 15px;
+        color: black;
+        border-radius: 5px;
+    }
+    button {
+        background-color: #dbd8d8;
+        height: 20px;
+        color: black;
+        border-radius: 5px;
+    }
+`

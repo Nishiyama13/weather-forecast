@@ -1,5 +1,5 @@
 import './App.css'
-//import styled from 'styled-components';
+import styled from 'styled-components';
 import { Outlet } from 'react-router-dom'
 import Weather from './pages/Weather'
 import Forecast from './pages/Forecast'
@@ -7,37 +7,11 @@ function App() {
 
   return (
     <>
-      <div>
+      <AppContainer>
       <h1>Levo um casaquinho?</h1>
       <Outlet />
       <Weather />
       <Forecast />
-      </div>
-    </>
-  )
-}
-
-export default App
-
-
-
-/*//import { useState } from 'react'
-import './App.css'
-import Weather from './pages/Weather'
-import Forecast from './pages/Forecast'
-
-function App() {
-  //const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <AppContainer>
-        <Router>
-          <Routes>
-            <Route path="/weather" element={<Weather />}/>
-            <Route path="/forecast" element={<Forecast />}/>
-          </Routes>
-        </Router>
       </AppContainer>
     </>
   )
@@ -46,31 +20,16 @@ function App() {
 export default App
 
 const AppContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    color: blue;
+    width: 100vw;
+    height: 100vw;;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+      font-weight: 700;
+      font-size: 25px;
+      color: blue;
+    }
 `;
-*/
-
-/*    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Levo um casaquinho?</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>*/
