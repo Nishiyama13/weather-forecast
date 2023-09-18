@@ -12,7 +12,7 @@ npm i
 ```
 3. Populate `.env` file based on `.env.example` 
 ```bash
-    API_WEATHER_KEY=SECRET_KEY
+    VITE_API_WEATHER_KEY=SECRET_KEY
 ```
     You can generate your key at: https://openweathermap.org/
 

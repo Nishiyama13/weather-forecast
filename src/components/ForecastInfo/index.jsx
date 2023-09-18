@@ -5,7 +5,6 @@ import { format } from 'date-fns'
 
 export default function ForecastInfo({ city }) {
     const weatherkey = import.meta.env.VITE_API_WEATHER_KEY;
-    console.log(weatherkey);
     const [forecastData, setForecastData] = useState([]);
 
     useEffect(() => {
