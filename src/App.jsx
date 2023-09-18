@@ -1,12 +1,13 @@
 import './App.css'
-import styled from 'styled-components';
-
+//import styled from 'styled-components';
+import { Outlet } from 'react-router-dom'
 function App() {
 
   return (
     <>
       <div>
       <h1>Levo um casaquinho?</h1>
+      <Outlet />
       </div>
     </>
   )
