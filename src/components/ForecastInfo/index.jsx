@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 
 export default function ForecastInfo({ city }) {
     const weatherkey = import.meta.env.VITE_API_WEATHER_KEY;
+    console.log(weatherkey);
     const [forecastData, setForecastData] = useState([]);
 
     useEffect(() => {
@@ -20,12 +21,14 @@ export default function ForecastInfo({ city }) {
             const apiForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${weatherkey}&lang=pt_br`
             const res = await fetch(apiForecastURL)
             const data = await res.json();
+            console.log(data);
 
             const formatData = data.list.map(item => ({
                 name: formatDay(item.dt_txt),
                 temperature: item.main.temp
             }));
 
+            //setCity(data.city.name);
             setForecastData(formatData);
         } catch (error) {
             console.log(error.message);

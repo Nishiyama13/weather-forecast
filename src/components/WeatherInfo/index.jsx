@@ -116,6 +116,7 @@ const WheatherContainer = styled.div`
     color: white;
     font-size: 14px;
     align-items: center;
+    text-align: left;
 
     h2 {
         font-size: 30px;
