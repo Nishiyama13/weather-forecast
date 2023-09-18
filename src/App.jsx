@@ -1,6 +1,8 @@
 import './App.css'
 //import styled from 'styled-components';
 import { Outlet } from 'react-router-dom'
+import Weather from './pages/Weather'
+import Forecast from './pages/Forecast'
 function App() {
 
   return (
@@ -8,6 +10,8 @@ function App() {
       <div>
       <h1>Levo um casaquinho?</h1>
       <Outlet />
+      <Weather />
+      <Forecast />
       </div>
     </>
   )

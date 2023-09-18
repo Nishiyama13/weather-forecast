@@ -5,10 +5,12 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Weather from './pages/Weather'
 import Forecast from './pages/Forecast'
+import ErrorPage from './pages/Error/ErrorPage.jsx'
 const router = createBrowserRouter([
   {
     path:"/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children:[
       {
         path: '/weather',
