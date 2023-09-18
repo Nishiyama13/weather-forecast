@@ -1,16 +1,6 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-
 # Weather Forecast
 
-Front-end for Weather Forecast
+This project is the front-end interface for a weather forecast application. Uses React with Vite as a build tool.
 
 ## How to run for development
 
@@ -20,13 +10,19 @@ Front-end for Weather Forecast
 ```bash
 npm i
 ```
-3. Populate `.env` file based on `.env.example`. `API_WEATHER_KEY`
-
-You can generate your key at: https://openweathermap.org/
+3. Populate `.env` file based on `.env.example` 
+```bash
+    API_WEATHER_KEY=SECRET_KEY
+```
+    You can generate your key at: https://openweathermap.org/
 
 
 4. Run the front-end in a development environment:
 
 ```bash
 npm run dev
+```
+5. you can test the application at:
+```bash
+https://weather-forecast-three-mu.vercel.app/
 ```
