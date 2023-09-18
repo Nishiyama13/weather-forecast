@@ -25,7 +25,7 @@ export default function ForecastInfo({ city }) {
 
             const formatData = data.list.map(item => ({
                 name: formatDay(item.dt_txt),
-                temperature: item.main.temp
+                temperature: item.main.temp.toFixed(1)
             }));
 
             //setCity(data.city.name);

@@ -37,9 +37,9 @@ export default function WeatherInfo({ city, setCity }) {
             const res = await fetch(apiWeatherURL)
             const data = await res.json();
             setCity(data.name);
-            setTemp_min(data.main.temp_min);
-            setTemp_max(data.main.temp_max);
-            setTemp(data.main.temp);
+            setTemp_min(data.main.temp_min.toFixed(1));
+            setTemp_max(data.main.temp_max.toFixed(1));
+            setTemp(data.main.temp.toFixed(1));
             updateWetherInfo(data.weather[0].main)
         } catch (error) {
             console.log(error.message);
