@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-export default function WeatherInfo() {
+export default function WeatherInfo({ city, setCity }) {
     
     const weatherkey = import.meta.env.VITE_API_WEATHER_KEY;
-    console.log(weatherkey);
-    const [city, setCity] = useState('');
     const [searchValue, setSearchValue] = useState('');
     const [temp_min, setTemp_min] = useState('');
     const [temp_max, setTemp_max] = useState('');
@@ -23,7 +21,6 @@ export default function WeatherInfo() {
     }
 
     async function showWeatherData (city) {
-        console.log(city);
         getWeatherData(city);
     }
 
@@ -40,7 +37,6 @@ export default function WeatherInfo() {
         try {
             const res = await fetch(apiWeatherURL)
             const data = await res.json();
-            console.log(data);
             setCity(data.name);
             setTemp_min(data.main.temp_min);
             setTemp_max(data.main.temp_max);

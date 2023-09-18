@@ -3,15 +3,17 @@ import styled from 'styled-components';
 import { Outlet } from 'react-router-dom'
 import Weather from './pages/Weather'
 import Forecast from './pages/Forecast'
+import { useState } from 'react';
 function App() {
+  const [city, setCity] = useState('');
 
   return (
     <>
       <AppContainer>
       <h1>Levo um casaquinho?</h1>
       <Outlet />
-      <Weather />
-      <Forecast />
+      <Weather city={city} setCity={setCity}/>
+      <Forecast city={city}/>
       </AppContainer>
     </>
   )

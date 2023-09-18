@@ -1,7 +1,7 @@
 import ForecastInfo from "../../components/ForecastInfo";
 
-export default function Forecast() {
+export default function Forecast({ city }) {
     return(
-        <ForecastInfo />
+        <ForecastInfo city={city}/>
     );
 }

@@ -1,8 +1,9 @@
 import WeatherInfo from "../../components/WeatherInfo";
 
-
-export default function Weather() {
+export default function Weather({ city, setCity }) {
     return(
-        <WeatherInfo />
+        <>
+            <WeatherInfo city={city} setCity={setCity}/>
+        </>
     );
 }

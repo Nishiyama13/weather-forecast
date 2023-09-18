@@ -3,26 +3,22 @@ import React, { useEffect, useState  } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { format } from 'date-fns'
 
-export default function ForecastInfo() {
+export default function ForecastInfo({ city }) {
     const weatherkey = import.meta.env.VITE_API_WEATHER_KEY;
     console.log(weatherkey);
-    const [city, setCity] = useState('');
     const [forecastData, setForecastData] = useState([]);
-    const initianCity = "maua"
 
     useEffect(() => {
-        showForecastData(initianCity);
-    },[]);
+        showForecastData(city);
+    },[city]);
 
     async function showForecastData (city) {
-        console.log(city);
         getForecastData(city);
     }
 
-    async function getForecastData (initianCity) {
+    async function getForecastData (city) {
         try {
-            const apiForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${initianCity}&units=metric&appid=${weatherkey}&lang=pt_br`
-            console.log(apiForecastURL);
+            const apiForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${weatherkey}&lang=pt_br`
             const res = await fetch(apiForecastURL)
             const data = await res.json();
             console.log(data);
@@ -32,7 +28,6 @@ export default function ForecastInfo() {
                 temperature: item.main.temp
             }));
 
-            setCity(data.city.name);
             setForecastData(formatData);
         } catch (error) {
             console.log(error.message);
