@@ -14,8 +14,8 @@ npm i
 ```bash
     VITE_API_WEATHER_KEY=SECRET_KEY
 ```
-    You can generate your key at: https://openweathermap.org/
 
+You can generate your key at: https://openweathermap.org/
 
 4. Run the front-end in a development environment:
 
