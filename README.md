@@ -28,10 +28,10 @@ npm run dev
 1. Pull the Docker image
 
 ```bash
-docker pull nishiyama13/weather-forecast
+docker pull nishiyama13/weather-forecast:1.0
 ```
 
-    1.1. Remove any existing container (if applicable):
+1.1. Remove any existing container (if applicable):
 
 ```bash
 docker rm -f weather-forecast1 || true
