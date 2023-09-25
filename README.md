@@ -22,9 +22,40 @@ npm i
 ```bash
 npm run dev
 ```
-5. you can test the application at:
+
+## Alternatively, you can use the Docker image:
+
+1. Pull the Docker image
+
+```bash
+docker pull nishiyama13/weather-forecast
+```
+
+    1.1. Remove any existing container (if applicable):
+
+```bash
+docker rm -f weather-forecast1 || true
+```
+
+2. Run the Docker container
+```bash
+docker run -p 8080:80 --name weather-forecast1 nishiyama13/weather-forecast:1.0
+```
+
+3. Now you can access the application at http://localhost:8080
+
+### Docker Repository Link:
+[Docker Repository](https://hub.docker.com/repository/docker/nishiyama13/weather-forecast/general)
+```bash
+https://hub.docker.com/repository/docker/nishiyama13/weather-forecast/general
+```
+
+
+## You can test the application at:
+[Weather Forecast Demo](https://weather-forecast-three-mu.vercel.app/)
 ```bash
 https://weather-forecast-three-mu.vercel.app/
 ```
 
 ![Weather Forecas image](src/assets/weather-forecast.png)
+

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+build/
+corevage/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
