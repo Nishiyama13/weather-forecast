@@ -12,6 +12,12 @@ export default function WeatherInfo({ city, setCity }) {
     const [backgroudColor, setBackgroudColor] = useState('#8E8E8E');
 
     useEffect(() => {
+        if("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const { latitude, longitude } = position.coords;
+                getCityFromCoords(latitude, longitude);
+            });
+        }
         showWeatherData(initianCity);
     },[]);
 
@@ -27,6 +33,23 @@ export default function WeatherInfo({ city, setCity }) {
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
             showWeatherData (searchValue)
+        }
+    }
+
+    async function getCityFromCoords(latitude, longitude) {
+        const geoApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${weatherkey}&lang=pt_br`
+
+        try {
+            const res = await fetch(geoApiUrl)
+            const data = await res.json();
+            setCity(data.name);
+            setTemp_min(data.main.temp_min.toFixed(1));
+            setTemp_max(data.main.temp_max.toFixed(1));
+            setTemp(data.main.temp.toFixed(1));
+            updateWetherInfo(data.weather[0].main)
+        } catch (error) {
+            console.log(error.message);
+            alert("Cidade não encontarda. Por favor, verifique o nome da cidade e tente novamente.")
         }
     }
 
