@@ -42,11 +42,7 @@ export default function WeatherInfo({ city, setCity }) {
         try {
             const res = await fetch(geoApiUrl)
             const data = await res.json();
-            setCity(data.name);
-            setTemp_min(data.main.temp_min.toFixed(1));
-            setTemp_max(data.main.temp_max.toFixed(1));
-            setTemp(data.main.temp.toFixed(1));
-            updateWetherInfo(data.weather[0].main)
+            updateWeatherData(data);
         } catch (error) {
             console.log(error.message);
             alert("Cidade não encontarda. Por favor, verifique o nome da cidade e tente novamente.")
@@ -59,15 +55,19 @@ export default function WeatherInfo({ city, setCity }) {
         try {
             const res = await fetch(apiWeatherURL)
             const data = await res.json();
-            setCity(data.name);
-            setTemp_min(data.main.temp_min.toFixed(1));
-            setTemp_max(data.main.temp_max.toFixed(1));
-            setTemp(data.main.temp.toFixed(1));
-            updateWetherInfo(data.weather[0].main)
+            updateWeatherData(data);
         } catch (error) {
             console.log(error.message);
             alert("Cidade não encontarda. Por favor, verifique o nome da cidade e tente novamente.")
         }
+    }
+
+    async function updateWeatherData(data) {
+        setCity(data.name);
+        setTemp_min(data.main.temp_min.toFixed(1));
+        setTemp_max(data.main.temp_max.toFixed(1));
+        setTemp(data.main.temp.toFixed(1));
+        updateWetherInfo(data.weather[0].main);
     }
 
     function updateWetherInfo(weather) {
