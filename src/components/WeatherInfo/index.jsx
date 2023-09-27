@@ -43,6 +43,7 @@ export default function WeatherInfo({ city, setCity }) {
             updateWetherInfo(data.weather[0].main)
         } catch (error) {
             console.log(error.message);
+            alert("Cidade não encontarda. Por favor, verifique o nome da cidade e tente novamente.")
         }
     }
 
